@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h1>谁将是2021赛季NBA常规赛MVP？</h1>
+  <p>你的预测是: {{mvp}}</p>
+  <span>库里</span>
+  <label>
+    <input type="radio" value="库里" v-model="mvp" >
+  </label>
+  <span>詹姆斯</span>
+  <label>
+    <input type="radio" value="詹姆斯" v-model="mvp">
+  </label>
+
+  <h1>谁能入选2021赛季NBA最佳防守整容？</h1>
+  <p>你的预测是: {{good}}</p>
+
+<!--  <label>詹姆斯-->
+<!--    <input type="checkbox" value="詹姆斯" v-model="good">-->
+<!--  </label>-->
+
+<!--  <label>维斯布鲁克-->
+<!--    <input type="checkbox" value="维斯布鲁克" v-model="good">-->
+<!--  </label>-->
+
+<!--  <label>霍华德-->
+<!--    <input type="checkbox" value="霍华德" v-model="good">-->
+<!--  </label>-->
+  <input v-for="startName in start" type="checkbox" value="startName.name" v-model="good">
+  <ul>
+    <li v-for="startName in start">{{startName.name}}</li>
+  </ul>
+
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+
+  let app = new Vue({
+    el:"#app",
+    data:{
+      mvp:'',
+      good:[],
+      start:[
+        {name:'霍华德'},
+        {name:'维斯布鲁克'},
+        {name:'詹姆斯'}
+      ]
+    }
+  })
+</script>
+</body>
+</html>

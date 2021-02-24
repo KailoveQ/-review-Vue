@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+    语文分数
+  <label>
+    <input type="text" v-model.number="gride" placeholder="请输入成绩进行判断">
+  </label>
+  <p v-if="gride>=90">优秀</p>
+  <p v-else-if="(gride>=60)&&(gride<90)">良好</p>
+  <p v-else-if="gride>=0">未及格</p>
+  <p v-else>未输入</p>
+  {{gride}}
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  // 需求，在页面中实时显示当前时间
+  let app = new Vue({
+    el:"#app",
+    data:{
+    gride:''
+    }
+  })
+</script>
+</body>
+</html>

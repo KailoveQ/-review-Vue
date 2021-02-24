@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="message">
+  <h2>输入的内容是{{message}}</h2>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  // 需求，在页面中实时显示当前时间
+  let app = new Vue({
+    el:"#app",
+    data:{
+    message:''
+    }
+  })
+</script>
+</body>
+</html>

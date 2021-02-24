@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>计算购物车总价</title>
+</head>
+<body>
+<div id="demo">
+总价为：{{prices}}
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  //
+  let app = new Vue({
+    el:"#demo",
+    data:{
+          package1:[
+            {name:'iphone3',price:300,count:3},
+            {name:'iphone4',price:4,count:4}
+          ],
+          package2:[
+            {name:'iphone7',price:700,count:7},
+            {name:'iphone8',price:8,count:8}
+          ],
+    },
+    computed:{
+      prices(){
+        let prices=0
+        for (let i=0;i<this.package1.length;i++){
+          this.package1[i].price*this.package1[i].price
+        }
+
+      }
+    }
+  })
+</script>
+</body>
+</html>

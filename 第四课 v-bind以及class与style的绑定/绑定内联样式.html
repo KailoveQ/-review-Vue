@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>绑定style</title>
+  <style>
+    .divStyle{
+        background-color: blue;
+        width: 100px ;
+        height: 100px;
+    }
+    .borderStyle{
+        border:10px solid red ;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+绑定style：<br/>
+<div :style="{'color':color,'fontSize':fontsize}">我是style </div>
+  <button @click="changeBig">点我变大</button>
+  数组语法
+  <div :style="[a,b]">我是数组方式</div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+
+  let app = new Vue({
+    el:"#app",
+    data:{
+        color:'red',
+        font:10,
+      a:{
+          color:'yellow',
+          fontsize:"20px"
+      },
+      b:{
+          height:'100px',
+          border:"1px solid red "
+      }
+    },
+    methods:{
+      changeBig(){
+        return this.font+=10
+      }
+    },
+    computed:{
+      fontsize(){
+        return fontsize=this.font+'px'
+      }
+    }
+  })
+</script>
+</body>
+</html>

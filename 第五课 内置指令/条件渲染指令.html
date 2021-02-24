@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  v-if 接的是等号，必须是布尔值
+  <p v-if="true">{{apple}}</p>
+  <p v-else>{{banana}}</p>
+  <h2>v-if的实例用法</h2>
+  <div>
+    <div v-if="type ==='name'">
+      用户名: <label>
+      <input  type="text" placeholder="请输入用户名" key="name">
+    </label>
+
+    </div>
+    <div v-else>
+      密码：
+      <label>
+        <input type="text" placeholder="请输入密码"  key="psd">
+      </label>
+    </div>
+
+    <br/>
+    <button @click="changeK">点我切换框</button>
+  </div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  // 需求，在页面中实时显示当前时间
+  let app = new Vue({
+    el:"#app",
+    data:{
+      apple:'apple',
+      banana:'banana',
+      type:'name'
+    },
+    methods:{
+      changeK(){
+          this.type=(this.type==='name'?name:'psd')
+      }
+
+    }
+  })
+</script>
+</body>
+</html>

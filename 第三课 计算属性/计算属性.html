@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>计算属性</title>
+</head>
+<body>
+<div id="demo">
+原数据：{{text}} <br/>
+计算属性实现: {{ reverseText}}
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  // 123456789变成 789 456 123
+  let app = new Vue({
+    el:"#demo",
+    data:{
+        text:'123,456,789'
+    },
+    mounted(){
+    },
+    computed:{
+      reverseText(){
+        return this.text.split(',').reverse().join(',')
+      }
+
+    }
+  })
+</script>
+</body>
+</html>

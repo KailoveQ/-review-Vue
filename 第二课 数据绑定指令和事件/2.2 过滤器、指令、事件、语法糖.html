@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .transred{
+        background-color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  {{date}}
+  <br/>
+  {{date | formatdate }}
+  <br/>
+  <span v-text="apple"></span>
+  <h3>v-html</h3>
+  <span v-html="banana"></span>
+  <h3>v-bind指令：绑定活的属性</h3>
+  <div class="className">我是V-bind,直接class=xxx 拿不到</div>
+  <div :class="className">我是使用v-bind</div>
+  <h3>v-on指令：绑定事件监听</h3>
+  <button @click="add">{{ count }}</button>
+</div>
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  //在月份，日期，小时小于10的时候补一个0
+  let plusDate=function (value){
+
+  }
+  let app= new Vue({
+    el:'#app',
+    data:{
+      date:new Date(),
+      apple:"苹果",
+      banana:'<span style="color: yellow">香蕉</span>',
+      className:'transred',
+      count:0
+    },
+    methods:{
+      add(){
+        this.count+=1
+      }
+    },
+    mounted(){
+      let _this =this
+      this.timer =setInterval(function (){
+        _this.date =new Date()
+      },1000)
+    },
+    beforeDestory(){
+      //清楚定时器
+      if(this.timer){
+        clearInterval(this.timer)
+      }
+    },
+    filters: {
+      formatdate(value) {
+        let data = new Date(value)
+        let year = data.getFullYear()
+        let month = data.getMonth()
+        let day = data.getDate()
+        let hours =data.getHours()
+        return year + '年 ' + month + '月 ' + day + '日 '+hours+ ' 时'
+      }
+    }
+  })
+</script>
+</body>
+</html>

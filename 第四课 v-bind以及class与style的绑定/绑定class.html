@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>绑定class</title>
+  <style>
+    .divStyle{
+        background-color: blue;
+        width: 100px ;
+        height: 100px;
+    }
+    .borderStyle{
+        border:10px solid red ;
+    }
+    .aStyle{
+        background-color: aquamarine;
+    }
+    .bStyle{
+        border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+绑定class对象语法：<br/>
+<div :class="{ divStyle:isActive ,borderStyle:isBorder}">
+  <button @click="change"></button>
+</div>
+  绑定class数语法：数组中的成员直接对应类名 <br/>
+  <div v-bind:class="[a,b,{divStyle: 'isActive'}]">我是使用数组语法的</div>
+
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+
+  let app = new Vue({
+    el:"#app",
+    data:{
+      isActive:true,
+      isBorder:true,
+      a:'aStyle',
+      b:'bStyle'
+    },
+    methods:{
+      change(){
+        return this.isActive= !this.isActive
+      }
+    }
+  })
+</script>
+</body>
+</html>

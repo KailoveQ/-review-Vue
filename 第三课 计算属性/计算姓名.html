@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>计算姓名</title>
+</head>
+<body>
+<div id="demo">
+计算属性的 getter 和 setter
+  <br/>
+  <p>使用默认的getter 姓名是----{{fullName}} </p>
+  <button @click="changeName">{{nnn}}</button>
+  <p>使用setter函数 传一个值---- {{fullName}} </p>
+  
+  <h3>计算属性的缓存</h3>
+ 使用methods 方法 {{date()}}<br/>
+  使用computed方法 {{datey}}
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  //
+  let app = new Vue({
+    el:"#demo",
+    data:{
+        firstName:'zhang',
+        lastName:'sanfeng',
+        nnn:'zhang,fei'
+    },
+    methods:{
+      changeName(){
+        return app.fullName=this.nnn
+      },
+      date(){
+        return new Date()
+      }
+    },
+    computed:{
+        // fullName(){
+        //   return this.firstName+this.lastName
+        // }
+      fullName:{
+        get(){
+          return this.firstName+this.lastName
+        },
+        set(newValue){
+          let names=newValue.split(',') //分割为数组
+          this.firstName=names[0]
+          this.lastName=names[1]
+        }
+      },
+      datey(){
+        return new Date()
+      }
+      }
+  })
+</script>
+</body>
+</html>

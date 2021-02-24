@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <label>
+    <input   type="text" v-model.lazy="name">
+  </label>
+  <h3>球星的名字是： {{name}},typeof识别的类型为： {{typeof name}}</h3>
+  <label>
+    <input type="text" v-model.number="age">
+  </label>
+  <h3>球星的年龄为：{{age}},,,typeof识别的类型为： {{typeof age}}</h3>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  // 需求，在页面中实时显示当前时间
+  let app = new Vue({
+    el:"#app",
+    data:{
+      name:'',
+      age:''
+    }
+  })
+</script>
+</body>
+</html>
