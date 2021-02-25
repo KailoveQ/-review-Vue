@@ -10,7 +10,7 @@
         height: 300px;
         font-size: 16px;
         font-weight: 700;
-        padding: 4px;
+        padding: 100px;
         margin: 100px auto 0;
     }
 
@@ -18,7 +18,8 @@
 </head>
 <body>
 <div id="app">
-
+      <my-acomponent></my-acomponent>
+      <my-bcomponent></my-bcomponent>
 </div>
 
 <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
@@ -26,8 +27,40 @@
 
   let app = new Vue({
     el:"#app",
+    data:{
+      bus:new Vue({ })
+    },
     components:{
-
+        'my-acomponent':{
+          template:`
+            <div style="background: peachpuff">我是子组件A
+            <button @click="handle">点击我向B组件传递一句话</button>
+            </div>`,
+          data(){
+            return{
+              aaa:'你好啊，B组件！'
+            }
+          },
+          methods:{
+            handle(){
+              this.$root.bus.$emit('lalala',this.aaa)
+            }
+          }
+        },
+        'my-bcomponent':{
+          data(){
+            return{
+              ccc:''
+            }
+          },
+        template:`<div style="background: yellow">我是子组件B</div>`,
+          created(){
+            var a=this.ccc
+          this.$root.bus.$on('lalala',function (value){
+            return( alert(value))
+          })
+          }
+      }
     }
   })
 </script>
