@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app" style="border:3px solid chartreuse; height: 160px">
+  <h2>现在的银行卡余额为：{{total}}</h2>
+  <child-component @change="handleTotal" :msg="total"></child-component>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:"#app",
+    data:{
+      total:2000,
+    },
+    components:{
+      'child-component':{
+        props:['msg'],
+        data(){
+          return {
+            count:this.msg
+          }
+        },
+        template:`
+            <div style="border: 2px solid purple;">
+                <button @click="reduceMoney">点我父组件的钱 -1000</button>
+                <button @click="increaseMoney">点我父组件的钱 +1000</button>
+            </div>`,
+        methods:{
+          reduceMoney(){
+              this.count-=1000
+            this.$emit('change',this.count)
+          },
+          increaseMoney(){
+              this.count+=1000
+            this.$emit('change',this.count)
+          }
+        }
+      }
+    },
+    methods:{
+      handleTotal(value){
+        this.total=value
+      }
+    }
+  })
+</script>
+</body>
+</html>

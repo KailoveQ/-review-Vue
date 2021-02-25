@@ -6,10 +6,11 @@
 </head>
 <body>
 <div id="app" style="border:3px solid chartreuse; height: 160px">
-  <child-component :msg="message"></child-component>
-  <h2>使用v-bind进行动态绑定：把input的信息传递给子组件</h2>
-  <input type="text" v-model="papapa">
-  <bind-component :msg="papapa"></bind-component>
+  <label>
+    <h3>输入数值，改变子组件宽度</h3>
+    <input type="text" v-model="width" p>
+  </label>
+  <child-component :wid="width"></child-component>
 </div>
 
 <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
@@ -17,17 +18,21 @@
   const app = new Vue({
     el:"#app",
     data:{
-      message:'我是来自父组件的数据',
-      papapa:'往里面输入啊，看啥呢？'
+      width:'0',
     },
     components:{
       'child-component':{
-        props:['msg'],
-        template:`<div>{{msg}}</div>`
-      },
-      'bind-component':{
-        props:['msg'],
-        template:`<div>{{msg}}</div>`
+        props:['wid'],
+        template:`<div :style="style"></div>`,
+        computed:{
+          style(){
+            return{
+              width:this.wid+'px',
+              height:'40px',
+              background:'red'
+            }
+          }
+        }
       }
     }
   })
