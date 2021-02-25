@@ -5,8 +5,12 @@
   <title>Title</title>
 </head>
 <body>
-<div id="app">
+<div id="app" style="border:1px solid red;">
   <my-component></my-component>
+</div>
+<div id="bpp" style="border:1px solid green;">
+  <my-component></my-component>
+  <son-component></son-component>
 </div>
 
 <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
@@ -16,14 +20,20 @@
 // })
 //注册组件
 Vue.component('my-component',{
+  template:`<div>我是全局组件的内容</div>`
 })
 const app= new Vue({
   el:'#app',
-  data:{
-
-  },
 })
+const bpp= new Vue({
+  el:'#bpp',
+  components:{
+    'son-component':{
+      template: `<div>我是子组件bpp的局部组件</div>`
 
+}
+  }
+})
 </script>
 </body>
 </html>
