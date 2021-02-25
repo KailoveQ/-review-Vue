@@ -48,14 +48,8 @@
           }
         },
         'my-bcomponent':{
-          data(){
-            return{
-              ccc:''
-            }
-          },
         template:`<div style="background: yellow">我是子组件B</div>`,
           created(){
-            var a=this.ccc
           this.$root.bus.$on('lalala',function (value){
             return( alert(value))
           })
