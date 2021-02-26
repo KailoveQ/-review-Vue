@@ -18,9 +18,8 @@
 </head>
 <body>
 <div id="app">
-<h3>父链$parent实现子组件修改父组件数据</h3>
-  {{msg}}
-  <my-component></my-component>
+
+  <my-children>我是父组件插入进来的内容！！！</my-children>
 </div>
 
 <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.5.16/vue.js"></script>
@@ -28,17 +27,13 @@
 
   let app = new Vue({
     el:"#app",
-    data:{
-      msg:'我是父组件的数据-----还未被修改'
-    },
     components:{
-      'my-component':{
-        template:`<button @click="changeName">点我修改</button>`,
-        methods:{
-          changeName(){
-              this.$parent.msg='我是父组件的数据-----已经被修改'
-          }
-        }
+      'my-children':{
+        template:`<div style="border: 2px solid red;">\
+                      <slot>\
+                      如果父组件没有插入内容，就显示我
+                      </slot>\
+                  </div>`
       }
     }
   })
